@@ -14,12 +14,12 @@ const appTimeout = time.Second * 10
 func (app *Config) sendSMS() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		_, cancel := context.WithTimeout(context.Background(), appTimeout)
-		var payload data.Data
+		var payload data.OTPData
 		defer cancel()
 
 		app.validateBody(c, &payload)
 
-		newData := data.Data{
+		newData := data.OTPData{
 			PhoneNumber: payload.PhoneNumber,
 		}
 
